@@ -31,6 +31,9 @@
 {
     [super viewDidLoad];
 
+    if ([UIView instancesRespondToSelector:@selector(setTintColor:)])
+        self.mapView.tintColor = self.navigationController.navigationBar.tintColor;
+
     self.mapView.tileSource = self.tileSource;
 }
 
