@@ -11,6 +11,8 @@
 #import "MBDMapViewController.h"
 #import "MBDProjectViewController.h"
 
+#import <MBProgressHUD/MBProgressHUD.h>
+
 @interface MBDInputViewController () <UITextFieldDelegate>
 
 @property (nonatomic) MBDInputMode inputMode;
@@ -75,22 +77,57 @@
 {
     [textField resignFirstResponder];
 
+    NSURL *validationURL;
+    NSString *errorTitle;
     UIViewController *viewController;
 
     switch (self.inputMode)
     {
         case MBDInputModeMapID:
+        {
+            validationURL = [NSURL URLWithString:[NSString stringWithFormat:@"https://api.tiles.mapbox.com/v3/%@.json", textField.text]];
+            errorTitle = @"Bad Map ID";
             viewController = [[MBDMapViewController alloc] initWithMapID:textField.text];
             break;
+        }
         case MBDInputModeTileMill1:
+        {
+            validationURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://%@:20009/api/Project", textField.text]];
+            errorTitle = @"Bad Host";
             viewController = [[MBDProjectViewController alloc] initWithHost:textField.text];
             break;
+        }
         case MBDInputModeTileMill2:
+        {
             // TODO
             break;
+        }
     }
 
-    [self.navigationController pushViewController:viewController animated:YES];
+    MBProgressHUD *progressHUD = [[MBProgressHUD alloc] initWithView:self.view];
+    progressHUD.removeFromSuperViewOnHide = YES;
+    [self.view addSubview:progressHUD];
+    [progressHUD show:YES];
+
+    [NSURLConnection sendAsynchronousRequest:[NSURLRequest requestWithURL:validationURL]
+                                       queue:[NSOperationQueue mainQueue]
+                           completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError)
+                           {
+                               if (((NSHTTPURLResponse *)response).statusCode == 200 && data)
+                               {
+                                   [self.navigationController pushViewController:viewController animated:YES];
+                               }
+                               else
+                               {
+                                   [[[UIAlertView alloc] initWithTitle:errorTitle
+                                                               message:@"That didn't work. Please try again."
+                                                              delegate:nil
+                                                     cancelButtonTitle:nil
+                                                     otherButtonTitles:@"Try Again", nil] show];
+                               }
+
+                               [progressHUD hide:YES];
+                           }];
 
     return YES;
 }
