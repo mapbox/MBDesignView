@@ -36,6 +36,8 @@
 - (void)viewDidLoad
 {
     self.view.backgroundColor = self.navigationController.navigationBar.tintColor;
+
+    self.title = @"Projects";
 }
 
 - (void)viewDidAppear:(BOOL)animated
