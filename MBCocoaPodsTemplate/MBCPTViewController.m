@@ -8,23 +8,35 @@
 
 #import "MBCPTViewController.h"
 
-#import <MapBox/MapBox.h>
+#import "MBDInputViewController.h"
 
 @interface MBCPTViewController ()
 
-@property (nonatomic) RMMapView *mapView;
+- (IBAction)tappedModeButton:(id)sender;
 
 @end
 
 @implementation MBCPTViewController
 
-- (void)viewDidLoad
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
-    [super viewDidLoad];
+    self = [super initWithNibName:nil bundle:nil];
 
-    self.mapView = [[RMMapView alloc] initWithFrame:self.view.bounds];
+    if (self)
+    {
+        self.title = @"MapBox Design";
+        self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Start" style:UIBarButtonItemStyleBordered target:nil action:nil];
+    }
 
-    [self.view addSubview:self.mapView];
+    return self;
+}
+
+
+- (IBAction)tappedModeButton:(id)sender
+{
+    UIView *buttonView = (UIView *)sender;
+
+    [self.navigationController pushViewController:[[MBDInputViewController alloc] initWithInputMode:buttonView.tag] animated:YES];
 }
 
 @end

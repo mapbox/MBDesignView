@@ -15,6 +15,11 @@
 		DD3D14CE18245CC200B5C329 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DD3D14CD18245CC200B5C329 /* main.m */; };
 		DD3D14D218245CC200B5C329 /* MBCPTAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DD3D14D118245CC200B5C329 /* MBCPTAppDelegate.m */; };
 		DD3D14D818245CC200B5C329 /* MBCPTViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD3D14D718245CC200B5C329 /* MBCPTViewController.m */; };
+		DDDFDA9A184FEE52000502F9 /* MBCPTViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DDDFDA99184FEE52000502F9 /* MBCPTViewController.xib */; };
+		DDDFDA9E184FF276000502F9 /* MBDInputViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDDFDA9C184FF276000502F9 /* MBDInputViewController.m */; };
+		DDDFDA9F184FF276000502F9 /* MBDInputViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DDDFDA9D184FF276000502F9 /* MBDInputViewController.xib */; };
+		DDDFDAA418500023000502F9 /* MBDMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDDFDAA218500023000502F9 /* MBDMapViewController.m */; };
+		DDDFDAA518500023000502F9 /* MBDMapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DDDFDAA318500023000502F9 /* MBDMapViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +36,13 @@
 		DD3D14D118245CC200B5C329 /* MBCPTAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MBCPTAppDelegate.m; sourceTree = "<group>"; };
 		DD3D14D618245CC200B5C329 /* MBCPTViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MBCPTViewController.h; sourceTree = "<group>"; };
 		DD3D14D718245CC200B5C329 /* MBCPTViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MBCPTViewController.m; sourceTree = "<group>"; };
+		DDDFDA99184FEE52000502F9 /* MBCPTViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MBCPTViewController.xib; path = ../MBCPTViewController.xib; sourceTree = "<group>"; };
+		DDDFDA9B184FF276000502F9 /* MBDInputViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBDInputViewController.h; sourceTree = "<group>"; };
+		DDDFDA9C184FF276000502F9 /* MBDInputViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBDInputViewController.m; sourceTree = "<group>"; };
+		DDDFDA9D184FF276000502F9 /* MBDInputViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MBDInputViewController.xib; sourceTree = "<group>"; };
+		DDDFDAA118500023000502F9 /* MBDMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBDMapViewController.h; sourceTree = "<group>"; };
+		DDDFDAA218500023000502F9 /* MBDMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBDMapViewController.m; sourceTree = "<group>"; };
+		DDDFDAA318500023000502F9 /* MBDMapViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MBDMapViewController.xib; sourceTree = "<group>"; };
 		EACD063F634741B4A15E60C7 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -85,6 +97,13 @@
 				DD3D14D118245CC200B5C329 /* MBCPTAppDelegate.m */,
 				DD3D14D618245CC200B5C329 /* MBCPTViewController.h */,
 				DD3D14D718245CC200B5C329 /* MBCPTViewController.m */,
+				DDDFDA99184FEE52000502F9 /* MBCPTViewController.xib */,
+				DDDFDA9B184FF276000502F9 /* MBDInputViewController.h */,
+				DDDFDA9C184FF276000502F9 /* MBDInputViewController.m */,
+				DDDFDA9D184FF276000502F9 /* MBDInputViewController.xib */,
+				DDDFDAA118500023000502F9 /* MBDMapViewController.h */,
+				DDDFDAA218500023000502F9 /* MBDMapViewController.m */,
+				DDDFDAA318500023000502F9 /* MBDMapViewController.xib */,
 				DD3D14C818245CC200B5C329 /* Supporting Files */,
 			);
 			path = MBCocoaPodsTemplate;
@@ -157,6 +176,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				DD3D14CC18245CC200B5C329 /* InfoPlist.strings in Resources */,
+				DDDFDAA518500023000502F9 /* MBDMapViewController.xib in Resources */,
+				DDDFDA9A184FEE52000502F9 /* MBCPTViewController.xib in Resources */,
+				DDDFDA9F184FF276000502F9 /* MBDInputViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -200,7 +222,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DDDFDAA418500023000502F9 /* MBDMapViewController.m in Sources */,
 				DD3D14D218245CC200B5C329 /* MBCPTAppDelegate.m in Sources */,
+				DDDFDA9E184FF276000502F9 /* MBDInputViewController.m in Sources */,
 				DD3D14D818245CC200B5C329 /* MBCPTViewController.m in Sources */,
 				DD3D14CE18245CC200B5C329 /* main.m in Sources */,
 			);

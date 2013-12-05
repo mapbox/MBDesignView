@@ -15,7 +15,13 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    self.window.rootViewController = [MBCPTViewController new];
+
+    MBCPTViewController *viewController = [MBCPTViewController new];
+
+    UINavigationController *wrapper = [[UINavigationController alloc] initWithRootViewController:viewController];
+    wrapper.navigationBar.tintColor = viewController.view.backgroundColor;
+    self.window.rootViewController = wrapper;
+
     [self.window makeKeyAndVisible];
 
     return YES;
