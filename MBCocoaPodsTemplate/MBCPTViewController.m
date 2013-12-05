@@ -31,12 +31,9 @@
     return self;
 }
 
-
 - (IBAction)tappedModeButton:(id)sender
 {
-    UIView *buttonView = (UIView *)sender;
-
-    [self.navigationController pushViewController:[[MBDInputViewController alloc] initWithInputMode:buttonView.tag] animated:YES];
+    [self.navigationController pushViewController:[[MBDInputViewController alloc] initWithInputMode:((UIView *)sender).tag] animated:YES];
 }
 
 @end
