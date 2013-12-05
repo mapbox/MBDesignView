@@ -17,7 +17,9 @@
 		DD3D14D818245CC200B5C329 /* MBCPTViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD3D14D718245CC200B5C329 /* MBCPTViewController.m */; };
 		DD427D16185011ED005F546D /* MBDProjectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD427D15185011ED005F546D /* MBDProjectViewController.m */; };
 		DD427D18185076AA005F546D /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD427D17185076AA005F546D /* Default-568h@2x.png */; };
-		DDDFDA9A184FEE52000502F9 /* MBCPTViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DDDFDA99184FEE52000502F9 /* MBCPTViewController.xib */; };
+		DD427D1A18507763005F546D /* MBCPTViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD427D1918507763005F546D /* MBCPTViewController.xib */; };
+		DD427D1D1850776F005F546D /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = DD427D1B1850776F005F546D /* icon.png */; };
+		DD427D1E1850776F005F546D /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD427D1C1850776F005F546D /* icon@2x.png */; };
 		DDDFDA9E184FF276000502F9 /* MBDInputViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDDFDA9C184FF276000502F9 /* MBDInputViewController.m */; };
 		DDDFDA9F184FF276000502F9 /* MBDInputViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DDDFDA9D184FF276000502F9 /* MBDInputViewController.xib */; };
 		DDDFDAA418500023000502F9 /* MBDMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDDFDAA218500023000502F9 /* MBDMapViewController.m */; };
@@ -41,7 +43,9 @@
 		DD427D14185011ED005F546D /* MBDProjectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBDProjectViewController.h; sourceTree = "<group>"; };
 		DD427D15185011ED005F546D /* MBDProjectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBDProjectViewController.m; sourceTree = "<group>"; };
 		DD427D17185076AA005F546D /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		DDDFDA99184FEE52000502F9 /* MBCPTViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MBCPTViewController.xib; path = ../MBCPTViewController.xib; sourceTree = "<group>"; };
+		DD427D1918507763005F546D /* MBCPTViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MBCPTViewController.xib; sourceTree = "<group>"; };
+		DD427D1B1850776F005F546D /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
+		DD427D1C1850776F005F546D /* icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon@2x.png"; sourceTree = "<group>"; };
 		DDDFDA9B184FF276000502F9 /* MBDInputViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBDInputViewController.h; sourceTree = "<group>"; };
 		DDDFDA9C184FF276000502F9 /* MBDInputViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBDInputViewController.m; sourceTree = "<group>"; };
 		DDDFDA9D184FF276000502F9 /* MBDInputViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MBDInputViewController.xib; sourceTree = "<group>"; };
@@ -102,7 +106,7 @@
 				DD3D14D118245CC200B5C329 /* MBCPTAppDelegate.m */,
 				DD3D14D618245CC200B5C329 /* MBCPTViewController.h */,
 				DD3D14D718245CC200B5C329 /* MBCPTViewController.m */,
-				DDDFDA99184FEE52000502F9 /* MBCPTViewController.xib */,
+				DD427D1918507763005F546D /* MBCPTViewController.xib */,
 				DDDFDA9B184FF276000502F9 /* MBDInputViewController.h */,
 				DDDFDA9C184FF276000502F9 /* MBDInputViewController.m */,
 				DDDFDA9D184FF276000502F9 /* MBDInputViewController.xib */,
@@ -124,6 +128,8 @@
 				DD3D14CD18245CC200B5C329 /* main.m */,
 				DD3D14CF18245CC200B5C329 /* MBCocoaPodsTemplate-Prefix.pch */,
 				DD427D17185076AA005F546D /* Default-568h@2x.png */,
+				DD427D1B1850776F005F546D /* icon.png */,
+				DD427D1C1850776F005F546D /* icon@2x.png */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -183,9 +189,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DD427D1E1850776F005F546D /* icon@2x.png in Resources */,
 				DD3D14CC18245CC200B5C329 /* InfoPlist.strings in Resources */,
 				DDDFDAA518500023000502F9 /* MBDMapViewController.xib in Resources */,
-				DDDFDA9A184FEE52000502F9 /* MBCPTViewController.xib in Resources */,
+				DD427D1D1850776F005F546D /* icon.png in Resources */,
+				DD427D1A18507763005F546D /* MBCPTViewController.xib in Resources */,
 				DD427D18185076AA005F546D /* Default-568h@2x.png in Resources */,
 				DDDFDA9F184FF276000502F9 /* MBDInputViewController.xib in Resources */,
 			);
