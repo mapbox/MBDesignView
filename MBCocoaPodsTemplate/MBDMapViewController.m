@@ -63,6 +63,8 @@
         self.mapView.tileSource = [[RMMapBoxSource alloc] initWithMapID:self.mapID];
 
         self.mapView.hideAttribution = NO;
+
+        self.title = [((RMMapBoxSource *)self.mapView.tileSource).infoDictionary valueForKey:@"name"];
     }
     else if (self.projectInfo)
     {
@@ -73,6 +75,8 @@
                                                                  maxZoom:[[self.projectInfo valueForKey:@"maxzoom"] floatValue]];
 
         self.mapView.hideAttribution = YES;
+
+        self.title = ([[self.projectInfo valueForKey:@"name"] length] ? [self.projectInfo valueForKey:@"name"] : [self.projectInfo valueForKey:@"id"]);
 
         CLLocationCoordinate2D centerCoordinate = CLLocationCoordinate2DMake(0, 0);
 
