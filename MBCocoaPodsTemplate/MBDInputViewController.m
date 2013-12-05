@@ -42,16 +42,19 @@
         case MBDInputModeMapID:
             self.title = @"Map ID";
             self.inputLabel.text = @"e.g. examples.greatmap";
+            self.inputField.text = [[NSUserDefaults standardUserDefaults] stringForKey:@"lastMapID"];
             break;
         case MBDInputModeTileMill1:
             self.title = @"TileMill 1";
             self.inputLabel.text = @"e.g. 10.0.1.7 or Joe.local";
+            self.inputField.text = [[NSUserDefaults standardUserDefaults] stringForKey:@"lastTileMill1Host"];
             self.inputField.keyboardType = UIKeyboardTypeNumbersAndPunctuation;
             self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Host" style:UIBarButtonItemStyleBordered target:nil action:nil];
             break;
         case MBDInputModeTileMill2:
             self.title = @"TileMill 2";
             self.inputLabel.text = @"e.g. 10.0.1.7 or Joe.local";
+            self.inputField.text = [[NSUserDefaults standardUserDefaults] stringForKey:@"lastTileMill2Host"];
             self.inputField.keyboardType = UIKeyboardTypeNumbersAndPunctuation;
             self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Host" style:UIBarButtonItemStyleBordered target:nil action:nil];
             break;
@@ -85,23 +88,26 @@
     [textField resignFirstResponder];
 
     NSURL *validationURL;
-    NSString *errorTitle;
+    NSString *defaultsKey;
     UIViewController *viewController;
+    NSString *errorTitle;
 
     switch (self.inputMode)
     {
         case MBDInputModeMapID:
         {
             validationURL = [NSURL URLWithString:[NSString stringWithFormat:@"https://api.tiles.mapbox.com/v3/%@.json", textField.text]];
-            errorTitle = @"Bad Map ID";
+            defaultsKey = @"lastMapID";
             viewController = [[MBDMapViewController alloc] initWithMapID:textField.text];
+            errorTitle = @"Bad Map ID";
             break;
         }
         case MBDInputModeTileMill1:
         {
             validationURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://%@:20009/api/Project", textField.text]];
-            errorTitle = @"Bad Host";
+            defaultsKey = @"lastTileMill1Host";
             viewController = [[MBDProjectViewController alloc] initWithHost:textField.text];
+            errorTitle = @"Bad Host";
             break;
         }
         case MBDInputModeTileMill2:
@@ -122,6 +128,9 @@
                            {
                                if (((NSHTTPURLResponse *)response).statusCode == 200 && data)
                                {
+                                   [[NSUserDefaults standardUserDefaults] setValue:textField.text forKey:defaultsKey];
+                                   [[NSUserDefaults standardUserDefaults] synchronize];
+
                                    [self.navigationController pushViewController:viewController animated:YES];
                                }
                                else
