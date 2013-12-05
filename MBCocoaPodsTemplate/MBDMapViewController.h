@@ -12,6 +12,7 @@
 
 @interface MBDMapViewController : UIViewController
 
-- (id)initWithTileSource:(id <RMTileSource>)tileSource;
+- (id)initWithMapID:(NSString *)mapID;
+- (id)initWithHost:(NSString *)host projectInfo:(NSDictionary *)projectInfo;
 
 @end

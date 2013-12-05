@@ -9,6 +9,7 @@
 #import "MBDInputViewController.h"
 
 #import "MBDMapViewController.h"
+#import "MBDProjectViewController.h"
 
 @interface MBDInputViewController () <UITextFieldDelegate>
 
@@ -42,15 +43,15 @@
             break;
         case MBDInputModeTileMill1:
             self.title = @"TileMill 1";
-            self.inputLabel.text = @"e.g. 10.0.10.7";
+            self.inputLabel.text = @"e.g. 10.0.1.7 or Joe.local";
             self.inputField.keyboardType = UIKeyboardTypeNumbersAndPunctuation;
-            self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Address" style:UIBarButtonItemStyleBordered target:nil action:nil];
+            self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Host" style:UIBarButtonItemStyleBordered target:nil action:nil];
             break;
         case MBDInputModeTileMill2:
             self.title = @"TileMill 2";
-            self.inputLabel.text = @"e.g. 10.0.10.7";
+            self.inputLabel.text = @"e.g. 10.0.1.7 or Joe.local";
             self.inputField.keyboardType = UIKeyboardTypeNumbersAndPunctuation;
-            self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Address" style:UIBarButtonItemStyleBordered target:nil action:nil];
+            self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Host" style:UIBarButtonItemStyleBordered target:nil action:nil];
             break;
     }
 }
@@ -61,23 +62,22 @@
 {
     [textField resignFirstResponder];
 
-    MBDMapViewController *mapViewController;
-    NSURL *hostURL;
+    UIViewController *viewController;
 
     switch (self.inputMode)
     {
         case MBDInputModeMapID:
-            mapViewController = [[MBDMapViewController alloc] initWithTileSource:[[RMMapBoxSource alloc] initWithMapID:textField.text]];
+            viewController = [[MBDMapViewController alloc] initWithMapID:textField.text];
             break;
         case MBDInputModeTileMill1:
-            hostURL = [NSURL URLWithString:textField.text];
-            mapViewController = [[MBDMapViewController alloc] initWithTileSource:[[RMTileMillSource alloc] initWithHost:@"10.0.7.100" mapName:@"travel" tileCacheKey:@"blah" minZoom:0 maxZoom:10]];
+            viewController = [[MBDProjectViewController alloc] initWithHost:textField.text];
             break;
         case MBDInputModeTileMill2:
+            // TODO
             break;
     }
 
-    [self.navigationController pushViewController:mapViewController animated:YES];
+    [self.navigationController pushViewController:viewController animated:YES];
 
     return YES;
 }

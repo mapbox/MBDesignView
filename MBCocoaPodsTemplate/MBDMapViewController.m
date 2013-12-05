@@ -10,19 +10,34 @@
 
 @interface MBDMapViewController ()
 
-@property (nonatomic) id <RMTileSource>tileSource;
 @property (nonatomic) IBOutlet RMMapView *mapView;
+@property (nonatomic) NSString *mapID;
+@property (nonatomic) NSString *host;
+@property (nonatomic) NSDictionary *projectInfo;
 
 @end
 
 @implementation MBDMapViewController
 
-- (id)initWithTileSource:(id <RMTileSource>)tileSource;
+- (id)initWithMapID:(NSString *)mapID
 {
     self = [super initWithNibName:nil bundle:nil];
 
     if (self)
-        _tileSource = tileSource;
+        _mapID = mapID;
+
+    return self;
+}
+
+- (id)initWithHost:(NSString *)host projectInfo:(NSDictionary *)projectInfo
+{
+    self = [super initWithNibName:nil bundle:nil];
+
+    if (self)
+    {
+        _host = host;
+        _projectInfo = projectInfo;
+    }
 
     return self;
 }
@@ -34,7 +49,48 @@
     if ([UIView instancesRespondToSelector:@selector(setTintColor:)])
         self.mapView.tintColor = self.navigationController.navigationBar.tintColor;
 
-    self.mapView.tileSource = self.tileSource;
+    self.mapView.hidden = YES;
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+
+    self.mapView.hidden = NO;
+
+    if (self.mapID)
+    {
+        self.mapView.tileSource = [[RMMapBoxSource alloc] initWithMapID:self.mapID];
+
+        self.mapView.hideAttribution = NO;
+    }
+    else if (self.projectInfo)
+    {
+        self.mapView.tileSource = [[RMTileMillSource alloc] initWithHost:self.host
+                                                                 mapName:[self.projectInfo valueForKey:@"id"]
+                                                            tileCacheKey:[self.host stringByAppendingString:[self.projectInfo valueForKey:@"id"]]
+                                                                 minZoom:[[self.projectInfo valueForKey:@"minzoom"] floatValue]
+                                                                 maxZoom:[[self.projectInfo valueForKey:@"maxzoom"] floatValue]];
+
+        self.mapView.hideAttribution = YES;
+
+        CLLocationCoordinate2D centerCoordinate = CLLocationCoordinate2DMake(0, 0);
+
+        if ([self.projectInfo objectForKey:@"center"])
+        {
+            centerCoordinate = CLLocationCoordinate2DMake([[[self.projectInfo objectForKey:@"center"] objectAtIndex:1] doubleValue],
+                                                          [[[self.projectInfo objectForKey:@"center"] objectAtIndex:0] doubleValue]);
+        }
+
+        CGFloat zoom = 0;
+
+        if ([self.projectInfo objectForKey:@"center"])
+        {
+            zoom = [[[self.projectInfo objectForKey:@"center"] objectAtIndex:2] floatValue];
+        }
+
+        [self.mapView setZoom:zoom atCoordinate:centerCoordinate animated:NO];
+    }
 }
 
 @end
