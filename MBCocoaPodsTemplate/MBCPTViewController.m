@@ -42,8 +42,16 @@
                                                                           metrics:nil
                                                                             views:@{ @"topLayoutGuide" : self.topLayoutGuide, @"topButton" : self.topButton }]];
 
-        [self.view layoutSubviews];
     }
+    else
+    {
+        [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-50-[topButton]"
+                                                                          options:0
+                                                                          metrics:nil
+                                                                            views:@{ @"topButton" : self.topButton }]];
+    }
+
+    [self.view layoutSubviews];
 }
 
 #pragma mark -
