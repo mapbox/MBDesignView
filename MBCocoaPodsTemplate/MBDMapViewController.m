@@ -50,11 +50,15 @@
         self.mapView.tintColor = self.navigationController.navigationBar.tintColor;
 
     self.mapView.hidden = YES;
+
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(reload:)];
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+
+    [self.mapView removeAllCachedImages];
 
     self.mapView.hidden = NO;
 
@@ -95,6 +99,15 @@
 
         [self.mapView setZoom:zoom atCoordinate:centerCoordinate animated:NO];
     }
+}
+
+#pragma mark -
+
+- (void)reload:(id)sender
+{
+    [self.mapView removeAllCachedImages];
+
+    [self.mapView reloadTileSourceAtIndex:0];
 }
 
 @end
