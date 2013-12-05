@@ -64,11 +64,15 @@
 
     if (self.mapID)
     {
-        self.mapView.tileSource = [[RMMapBoxSource alloc] initWithMapID:self.mapID];
+        RMMapBoxSource *tileSource = [[RMMapBoxSource alloc] initWithMapID:self.mapID];
+
+        self.mapView.tileSource = tileSource;
 
         self.mapView.hideAttribution = NO;
 
-        self.title = [((RMMapBoxSource *)self.mapView.tileSource).infoDictionary valueForKey:@"name"];
+        self.title = [tileSource.infoDictionary valueForKey:@"name"];
+
+        [self.mapView setZoom:tileSource.centerZoom atCoordinate:tileSource.centerCoordinate animated:NO];
     }
     else if (self.projectInfo)
     {
