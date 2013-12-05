@@ -36,6 +36,8 @@
 - (void)viewDidLoad
 {
     self.title = @"Projects";
+
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(reload:)];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -43,37 +45,46 @@
     [super viewDidAppear:animated];
 
     if ( ! [self.projects count])
+        [self reload:self];
+}
+
+#pragma mark -
+
+- (void)reload:(id)sender
+{
+    self.progressHUD = [[MBProgressHUD alloc] initWithView:self.view];
+    self.progressHUD.removeFromSuperViewOnHide = YES;
+    [self.view addSubview:self.progressHUD];
+    [self.progressHUD show:YES];
+
+    self.projects = @[];
+
+    [self.tableView reloadData];
+
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void)
     {
-        self.progressHUD = [[MBProgressHUD alloc] initWithView:self.view];
-        self.progressHUD.removeFromSuperViewOnHide = YES;
-        [self.view addSubview:self.progressHUD];
-        [self.progressHUD show:YES];
+        NSArray *projects = [NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://%@:20009/api/Project", self.host]]]
+                                                            options:0
+                                                              error:nil];
 
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void)
-        {
-            NSArray *projects = [NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://%@:20009/api/Project", self.host]]]
-                                                                options:0
-                                                                  error:nil];
+        NSArray *sortedProjects = [projects sortedArrayWithOptions:0
+                                                   usingComparator:^NSComparisonResult(id obj1, id obj2)
+                                                   {
+                                                       NSString *name1 = ([[obj1 valueForKey:@"name"] length] ? [obj1 valueForKey:@"name"] : [obj1 valueForKey:@"id"]);
+                                                       NSString *name2 = ([[obj2 valueForKey:@"name"] length] ? [obj2 valueForKey:@"name"] : [obj2 valueForKey:@"id"]);
 
-            NSArray *sortedProjects = [projects sortedArrayWithOptions:0
-                                                       usingComparator:^NSComparisonResult(id obj1, id obj2)
-                                                       {
-                                                           NSString *name1 = ([[obj1 valueForKey:@"name"] length] ? [obj1 valueForKey:@"name"] : [obj1 valueForKey:@"id"]);
-                                                           NSString *name2 = ([[obj2 valueForKey:@"name"] length] ? [obj2 valueForKey:@"name"] : [obj2 valueForKey:@"id"]);
+                                                       return [name1 compare:name2 options:NSCaseInsensitiveSearch];
+                                                   }];
 
-                                                           return [name1 compare:name2 options:NSCaseInsensitiveSearch];
-                                                       }];
+       dispatch_async(dispatch_get_main_queue(), ^(void)
+       {
+           self.projects = sortedProjects;
 
-            dispatch_async(dispatch_get_main_queue(), ^(void)
-            {
-                self.projects = sortedProjects;
+           [self.tableView performSelector:@selector(reloadData) withObject:nil afterDelay:1.0];
 
-                [self.tableView performSelector:@selector(reloadData) withObject:nil afterDelay:1.0];
-
-                [self.progressHUD hide:YES afterDelay:1.0];
-            });
-        });
-    }
+           [self.progressHUD hide:YES afterDelay:1.0];
+       });
+   });
 }
 
 #pragma mark -
