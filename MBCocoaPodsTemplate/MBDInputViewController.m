@@ -58,6 +58,13 @@
     }
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+
+    [self.inputField becomeFirstResponder];
+}
+
 - (void)viewDidLayoutSubviews
 {
     if ([UIViewController instancesRespondToSelector:@selector(topLayoutGuide)])
