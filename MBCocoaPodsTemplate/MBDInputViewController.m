@@ -13,7 +13,7 @@
 
 #import <MBProgressHUD/MBProgressHUD.h>
 
-@interface MBDInputViewController () <UITextFieldDelegate>
+@interface MBDInputViewController () <UITextFieldDelegate, UIAlertViewDelegate>
 
 @property (nonatomic) MBDInputMode inputMode;
 @property (nonatomic) IBOutlet UILabel *inputLabel;
@@ -128,7 +128,7 @@
                                {
                                    [[[UIAlertView alloc] initWithTitle:errorTitle
                                                                message:@"That didn't work. Please try again."
-                                                              delegate:nil
+                                                              delegate:self
                                                      cancelButtonTitle:nil
                                                      otherButtonTitles:@"Try Again", nil] show];
                                }
@@ -137,6 +137,13 @@
                            }];
 
     return YES;
+}
+
+#pragma mark -
+
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+    [self.inputField becomeFirstResponder];
 }
 
 @end
