@@ -111,7 +111,11 @@
 {
     [self.mapView removeAllCachedImages];
 
-    [self.mapView reloadTileSourceAtIndex:0];
+    id tileSource = self.mapView.tileSource;
+
+    [self.mapView removeTileSourceAtIndex:0];
+
+    self.mapView.tileSource = tileSource;
 }
 
 @end
