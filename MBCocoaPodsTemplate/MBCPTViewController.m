@@ -12,6 +12,8 @@
 
 @interface MBCPTViewController ()
 
+@property (nonatomic) IBOutlet UIButton *topButton;
+
 - (IBAction)tappedModeButton:(id)sender;
 
 @end
@@ -30,6 +32,21 @@
 
     return self;
 }
+
+- (void)viewDidLayoutSubviews
+{
+    if ([UIViewController instancesRespondToSelector:@selector(topLayoutGuide)])
+    {
+        [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[topLayoutGuide]-50-[topButton]"
+                                                                          options:0
+                                                                          metrics:nil
+                                                                            views:@{ @"topLayoutGuide" : self.topLayoutGuide, @"topButton" : self.topButton }]];
+
+        [self.view layoutSubviews];
+    }
+}
+
+#pragma mark -
 
 - (IBAction)tappedModeButton:(id)sender
 {

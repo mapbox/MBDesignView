@@ -35,8 +35,6 @@
 
 - (void)viewDidLoad
 {
-    self.view.backgroundColor = self.navigationController.navigationBar.tintColor;
-
     self.title = @"Projects";
 }
 
@@ -88,6 +86,20 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
+
+    cell.selectedBackgroundView = [[UIView alloc] initWithFrame:cell.bounds];
+
+    if ([UIView instancesRespondToSelector:@selector(tintColor)])
+    {
+        cell.selectedBackgroundView.backgroundColor = self.navigationController.navigationBar.tintColor;
+        cell.textLabel.highlightedTextColor = [UIColor whiteColor];
+    }
+    else
+    {
+        cell.textLabel.textColor = self.navigationController.navigationBar.tintColor;
+        cell.selectedBackgroundView.backgroundColor = self.navigationController.navigationBar.tintColor;
+        cell.textLabel.highlightedTextColor = [UIColor whiteColor];
+    }
 
     cell.textLabel.text = ([[self.projects[indexPath.row] valueForKey:@"name"] length] ? [self.projects[indexPath.row] valueForKey:@"name"] : [self.projects[indexPath.row] valueForKey:@"id"]);
 

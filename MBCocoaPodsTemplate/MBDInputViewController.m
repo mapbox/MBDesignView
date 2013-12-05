@@ -58,12 +58,15 @@
 
 - (void)viewDidLayoutSubviews
 {
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[topLayoutGuide]-[inputLabel]"
-                                                                      options:0
-                                                                      metrics:nil
-                                                                        views:@{ @"topLayoutGuide" : self.topLayoutGuide, @"inputLabel" : self.inputLabel }]];
+    if ([UIViewController instancesRespondToSelector:@selector(topLayoutGuide)])
+    {
+        [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[topLayoutGuide]-[inputLabel]"
+                                                                          options:0
+                                                                          metrics:nil
+                                                                            views:@{ @"topLayoutGuide" : self.topLayoutGuide, @"inputLabel" : self.inputLabel }]];
 
-    [self.view layoutSubviews];
+        [self.view layoutSubviews];
+    }
 }
 
 #pragma mark -

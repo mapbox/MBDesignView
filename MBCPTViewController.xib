@@ -7,6 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MBCPTViewController">
             <connections>
+                <outlet property="topButton" destination="AL5-f9-3tA" id="xha-qS-neZ"/>
                 <outlet property="view" destination="1" id="vkP-C3-iPD"/>
             </connections>
         </placeholder>
@@ -15,7 +16,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AL5-f9-3tA">
+                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AL5-f9-3tA">
                     <rect key="frame" x="60" y="121" width="200" height="75"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -23,6 +24,7 @@
                         <constraint firstAttribute="height" constant="75" id="1kZ-wn-pER"/>
                         <constraint firstAttribute="width" constant="200" id="mdH-mx-WwV"/>
                     </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
                     <state key="normal" title="Map ID">
                         <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -31,7 +33,7 @@
                         <action selector="tappedModeButton:" destination="-1" eventType="touchUpInside" id="9LR-KK-OY0"/>
                     </connections>
                 </button>
-                <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YKY-w6-l1M">
+                <button opaque="NO" tag="1" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YKY-w6-l1M">
                     <rect key="frame" x="60" y="246" width="200" height="75"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -39,6 +41,7 @@
                         <constraint firstAttribute="height" constant="75" id="2a5-Qs-KDH"/>
                         <constraint firstAttribute="width" constant="200" id="rND-40-aWh"/>
                     </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
                     <state key="normal" title="TileMill 1">
                         <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -47,7 +50,7 @@
                         <action selector="tappedModeButton:" destination="-1" eventType="touchUpInside" id="gKz-cr-4P8"/>
                     </connections>
                 </button>
-                <button opaque="NO" tag="2" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IDw-Oy-h2O">
+                <button opaque="NO" tag="2" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IDw-Oy-h2O">
                     <rect key="frame" x="60" y="371" width="200" height="75"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -55,6 +58,7 @@
                         <constraint firstAttribute="height" constant="75" id="lva-mU-NA6"/>
                         <constraint firstAttribute="width" constant="200" id="o38-fT-VQE"/>
                     </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
                     <state key="normal" title="TileMill 2">
                         <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -68,7 +72,6 @@
             <constraints>
                 <constraint firstItem="YKY-w6-l1M" firstAttribute="top" secondItem="AL5-f9-3tA" secondAttribute="bottom" constant="50" id="31x-MP-pye"/>
                 <constraint firstItem="IDw-Oy-h2O" firstAttribute="top" secondItem="YKY-w6-l1M" secondAttribute="bottom" constant="50" id="6EJ-t5-VqZ"/>
-                <constraint firstAttribute="centerY" secondItem="YKY-w6-l1M" secondAttribute="centerY" id="NKb-e1-QqG"/>
                 <constraint firstAttribute="centerX" secondItem="IDw-Oy-h2O" secondAttribute="centerX" id="Pwr-7R-R4I"/>
                 <constraint firstAttribute="centerX" secondItem="AL5-f9-3tA" secondAttribute="centerX" id="Vc9-H7-cim"/>
                 <constraint firstAttribute="centerX" secondItem="YKY-w6-l1M" secondAttribute="centerX" id="lcw-ZD-Isc"/>
