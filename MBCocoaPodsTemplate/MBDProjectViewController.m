@@ -10,7 +10,6 @@
 
 #import "MBDMapViewController.h"
 
-#import <MapBox/MapBox.h>
 #import <MBProgressHUD/MBProgressHUD.h>
 
 @interface MBDProjectViewController ()

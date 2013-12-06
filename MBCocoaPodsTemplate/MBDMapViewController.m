@@ -8,12 +8,15 @@
 
 #import "MBDMapViewController.h"
 
+#import "MBDTM2TileSource.h"
+
 @interface MBDMapViewController ()
 
 @property (nonatomic) IBOutlet RMMapView *mapView;
 @property (nonatomic) NSString *mapID;
 @property (nonatomic) NSString *host;
 @property (nonatomic) NSDictionary *projectInfo;
+@property (nonatomic) NSString *projectPath;
 
 @end
 
@@ -37,6 +40,19 @@
     {
         _host = host;
         _projectInfo = projectInfo;
+    }
+
+    return self;
+}
+
+- (id)initWithHost:(NSString *)host projectPath:(NSString *)projectPath
+{
+    self = [super initWithNibName:nil bundle:nil];
+
+    if (self)
+    {
+        _host = host;
+        _projectPath = projectPath;
     }
 
     return self;
@@ -102,6 +118,20 @@
         }
 
         [self.mapView setZoom:zoom atCoordinate:centerCoordinate animated:NO];
+    }
+    else if (self.projectPath)
+    {
+        self.mapView.tileSource = [[MBDTM2TileSource alloc] initWithHost:self.host
+                                                             projectPath:self.projectPath
+                                                            tileCacheKey:[self.host stringByAppendingString:self.projectPath]
+                                                                 minZoom:0
+                                                                 maxZoom:19];
+
+        self.mapView.hideAttribution = YES;
+
+        self.title = [self.projectPath lastPathComponent];
+
+        [self.mapView setZoom:2 atCoordinate:CLLocationCoordinate2DMake(0, 0) animated:NO];
     }
 }
 

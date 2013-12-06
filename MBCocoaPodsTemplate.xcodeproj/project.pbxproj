@@ -20,6 +20,8 @@
 		DD427D1A18507763005F546D /* MBCPTViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD427D1918507763005F546D /* MBCPTViewController.xib */; };
 		DD427D1D1850776F005F546D /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = DD427D1B1850776F005F546D /* icon.png */; };
 		DD427D1E1850776F005F546D /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD427D1C1850776F005F546D /* icon@2x.png */; };
+		DD97F32518514D2800078E76 /* MBDBrowseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD97F32418514D2800078E76 /* MBDBrowseViewController.m */; };
+		DD97F328185155A700078E76 /* MBDTM2TileSource.m in Sources */ = {isa = PBXBuildFile; fileRef = DD97F327185155A700078E76 /* MBDTM2TileSource.m */; };
 		DDDFDA9E184FF276000502F9 /* MBDInputViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDDFDA9C184FF276000502F9 /* MBDInputViewController.m */; };
 		DDDFDA9F184FF276000502F9 /* MBDInputViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DDDFDA9D184FF276000502F9 /* MBDInputViewController.xib */; };
 		DDDFDAA418500023000502F9 /* MBDMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDDFDAA218500023000502F9 /* MBDMapViewController.m */; };
@@ -46,6 +48,10 @@
 		DD427D1918507763005F546D /* MBCPTViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MBCPTViewController.xib; sourceTree = "<group>"; };
 		DD427D1B1850776F005F546D /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 		DD427D1C1850776F005F546D /* icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon@2x.png"; sourceTree = "<group>"; };
+		DD97F32318514D2800078E76 /* MBDBrowseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBDBrowseViewController.h; sourceTree = "<group>"; };
+		DD97F32418514D2800078E76 /* MBDBrowseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBDBrowseViewController.m; sourceTree = "<group>"; };
+		DD97F326185155A700078E76 /* MBDTM2TileSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBDTM2TileSource.h; sourceTree = "<group>"; };
+		DD97F327185155A700078E76 /* MBDTM2TileSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBDTM2TileSource.m; sourceTree = "<group>"; };
 		DDDFDA9B184FF276000502F9 /* MBDInputViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBDInputViewController.h; sourceTree = "<group>"; };
 		DDDFDA9C184FF276000502F9 /* MBDInputViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBDInputViewController.m; sourceTree = "<group>"; };
 		DDDFDA9D184FF276000502F9 /* MBDInputViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MBDInputViewController.xib; sourceTree = "<group>"; };
@@ -112,6 +118,10 @@
 				DDDFDA9D184FF276000502F9 /* MBDInputViewController.xib */,
 				DD427D14185011ED005F546D /* MBDProjectViewController.h */,
 				DD427D15185011ED005F546D /* MBDProjectViewController.m */,
+				DD97F32318514D2800078E76 /* MBDBrowseViewController.h */,
+				DD97F32418514D2800078E76 /* MBDBrowseViewController.m */,
+				DD97F326185155A700078E76 /* MBDTM2TileSource.h */,
+				DD97F327185155A700078E76 /* MBDTM2TileSource.m */,
 				DDDFDAA118500023000502F9 /* MBDMapViewController.h */,
 				DDDFDAA218500023000502F9 /* MBDMapViewController.m */,
 				DDDFDAA318500023000502F9 /* MBDMapViewController.xib */,
@@ -241,9 +251,11 @@
 			files = (
 				DDDFDAA418500023000502F9 /* MBDMapViewController.m in Sources */,
 				DD3D14D218245CC200B5C329 /* MBCPTAppDelegate.m in Sources */,
+				DD97F328185155A700078E76 /* MBDTM2TileSource.m in Sources */,
 				DDDFDA9E184FF276000502F9 /* MBDInputViewController.m in Sources */,
 				DD3D14D818245CC200B5C329 /* MBCPTViewController.m in Sources */,
 				DD427D16185011ED005F546D /* MBDProjectViewController.m in Sources */,
+				DD97F32518514D2800078E76 /* MBDBrowseViewController.m in Sources */,
 				DD3D14CE18245CC200B5C329 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

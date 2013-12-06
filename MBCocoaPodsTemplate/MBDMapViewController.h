@@ -14,5 +14,6 @@
 
 - (id)initWithMapID:(NSString *)mapID;
 - (id)initWithHost:(NSString *)host projectInfo:(NSDictionary *)projectInfo;
+- (id)initWithHost:(NSString *)host projectPath:(NSString *)projectPath;
 
 @end

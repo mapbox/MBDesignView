@@ -10,6 +10,7 @@
 
 #import "MBDMapViewController.h"
 #import "MBDProjectViewController.h"
+#import "MBDBrowseViewController.h"
 
 #import <MBProgressHUD/MBProgressHUD.h>
 
@@ -112,7 +113,10 @@
         }
         case MBDInputModeTileMill2:
         {
-            // TODO
+            validationURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://%@:3000/browse", textField.text]];
+            defaultsKey = @"lastTileMill2Host";
+            viewController = [[MBDBrowseViewController alloc] initWithHost:textField.text path:@""];
+            errorTitle = @"Bad Host";
             break;
         }
     }
