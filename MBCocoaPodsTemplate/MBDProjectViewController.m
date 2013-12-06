@@ -62,27 +62,30 @@
 
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void)
     {
-        NSArray *projects = [NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://%@:20009/api/Project", self.host]]]
-                                                            options:0
-                                                              error:nil];
+        NSData *projectData = [NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://%@:20009/api/Project", self.host]]];
 
-        NSArray *sortedProjects = [projects sortedArrayWithOptions:0
-                                                   usingComparator:^NSComparisonResult(id obj1, id obj2)
-                                                   {
-                                                       NSString *name1 = ([[obj1 valueForKey:@"name"] length] ? [obj1 valueForKey:@"name"] : [obj1 valueForKey:@"id"]);
-                                                       NSString *name2 = ([[obj2 valueForKey:@"name"] length] ? [obj2 valueForKey:@"name"] : [obj2 valueForKey:@"id"]);
+        if (projectData)
+        {
+            NSArray *projects = [NSJSONSerialization JSONObjectWithData:projectData options:0 error:nil];
 
-                                                       return [name1 compare:name2 options:NSCaseInsensitiveSearch];
-                                                   }];
+            NSArray *sortedProjects = [projects sortedArrayWithOptions:0
+                                                       usingComparator:^NSComparisonResult(id obj1, id obj2)
+                                                       {
+                                                           NSString *name1 = ([[obj1 valueForKey:@"name"] length] ? [obj1 valueForKey:@"name"] : [obj1 valueForKey:@"id"]);
+                                                           NSString *name2 = ([[obj2 valueForKey:@"name"] length] ? [obj2 valueForKey:@"name"] : [obj2 valueForKey:@"id"]);
 
-       dispatch_async(dispatch_get_main_queue(), ^(void)
-       {
-           self.projects = sortedProjects;
+                                                           return [name1 compare:name2 options:NSCaseInsensitiveSearch];
+                                                       }];
 
-           [self.tableView performSelector:@selector(reloadData) withObject:nil afterDelay:1.0];
+           dispatch_async(dispatch_get_main_queue(), ^(void)
+           {
+               self.projects = sortedProjects;
 
-           [self.progressHUD hide:YES afterDelay:1.0];
-       });
+               [self.tableView performSelector:@selector(reloadData) withObject:nil afterDelay:1.0];
+
+               [self.progressHUD hide:YES afterDelay:1.0];
+           });
+        }
    });
 }
 

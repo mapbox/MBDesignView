@@ -66,18 +66,21 @@
 
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void)
     {
-        NSArray *items = [NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://%@:3000/browse/%@", self.host, self.path]]]
-                                                         options:0
-                                                           error:nil];
+        NSData *itemData = [NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://%@:3000/browse/%@", self.host, self.path]]];
 
-       dispatch_async(dispatch_get_main_queue(), ^(void)
-       {
-           self.items = items;
+        if (itemData)
+        {
+            NSArray *items = [NSJSONSerialization JSONObjectWithData:itemData options:0 error:nil];
 
-           [self.tableView performSelector:@selector(reloadData) withObject:nil afterDelay:1.0];
+            dispatch_async(dispatch_get_main_queue(), ^(void)
+            {
+                self.items = items;
 
-           [self.progressHUD hide:YES afterDelay:1.0];
-       });
+                [self.tableView performSelector:@selector(reloadData) withObject:nil afterDelay:1.0];
+
+                [self.progressHUD hide:YES afterDelay:1.0];
+            });
+        }
    });
 }
 
