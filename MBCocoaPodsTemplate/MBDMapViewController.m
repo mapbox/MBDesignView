@@ -10,6 +10,8 @@
 
 #import "MBDTM2TileSource.h"
 
+#import <UIColor-HexString/UIColor+HexString.h>
+
 @interface MBDMapViewController ()
 
 @property (nonatomic) IBOutlet RMMapView *mapView;
@@ -78,6 +80,8 @@
 
     self.mapView.hidden = NO;
 
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+
     if (self.mapID)
     {
         RMMapBoxSource *tileSource = [[RMMapBoxSource alloc] initWithMapID:self.mapID];
@@ -86,7 +90,17 @@
 
         self.mapView.hideAttribution = NO;
 
-        self.title = [tileSource.infoDictionary valueForKey:@"name"];
+        self.title = ([[defaults stringForKey:@"lastHostedTitle"] length] ? [defaults stringForKey:@"lastHostedTitle"] : [tileSource.infoDictionary valueForKey:@"name"]);
+
+        if ([[defaults stringForKey:@"lastHostedColor"] length])
+        {
+            NSString *hexString = [[defaults stringForKey:@"lastHostedColor"] stringByReplacingOccurrencesOfString:@"#" withString:@""];
+
+            self.navigationController.navigationBar.tintColor = [UIColor colorWithHexString:hexString];
+
+            if ([UIView instancesRespondToSelector:@selector(setTintColor:)])
+                self.mapView.tintColor = [UIColor colorWithHexString:hexString];
+        }
 
         [self.mapView setZoom:tileSource.centerZoom atCoordinate:tileSource.centerCoordinate animated:NO];
     }
@@ -100,7 +114,17 @@
 
         self.mapView.hideAttribution = YES;
 
-        self.title = ([[self.projectInfo valueForKey:@"name"] length] ? [self.projectInfo valueForKey:@"name"] : [self.projectInfo valueForKey:@"id"]);
+        self.title = ([[defaults stringForKey:@"lastTileMill1Title"] length] ? [defaults stringForKey:@"lastTileMill1Title"] : ([[self.projectInfo valueForKey:@"name"] length] ? [self.projectInfo valueForKey:@"name"] : [self.projectInfo valueForKey:@"id"]));
+
+        if ([[defaults stringForKey:@"lastTileMill1Color"] length])
+        {
+            NSString *hexString = [[defaults stringForKey:@"lastTileMill1Color"] stringByReplacingOccurrencesOfString:@"#" withString:@""];
+
+            self.navigationController.navigationBar.tintColor = [UIColor colorWithHexString:hexString];
+
+            if ([UIView instancesRespondToSelector:@selector(setTintColor:)])
+                self.mapView.tintColor = [UIColor colorWithHexString:hexString];
+        }
 
         CLLocationCoordinate2D centerCoordinate = CLLocationCoordinate2DMake(0, 0);
 
@@ -129,10 +153,27 @@
 
         self.mapView.hideAttribution = YES;
 
-        self.title = [self.projectPath lastPathComponent];
+        self.title = ([[defaults stringForKey:@"lastTileMill2Title"] length] ? [defaults stringForKey:@"lastTileMill2Title"] : [self.projectPath lastPathComponent]);
+
+        if ([[defaults stringForKey:@"lastTileMill2Color"] length])
+        {
+            NSString *hexString = [[defaults stringForKey:@"lastTileMill2Color"] stringByReplacingOccurrencesOfString:@"#" withString:@""];
+
+            self.navigationController.navigationBar.tintColor = [UIColor colorWithHexString:hexString];
+
+            if ([UIView instancesRespondToSelector:@selector(setTintColor:)])
+                self.mapView.tintColor = [UIColor colorWithHexString:hexString];
+        }
 
         [self.mapView setZoom:2 atCoordinate:CLLocationCoordinate2DMake(0, 0) animated:NO];
     }
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+
+    self.navigationController.navigationBar.tintColor = ((UIViewController *)self.navigationController.viewControllers[0]).view.backgroundColor;
 }
 
 #pragma mark -

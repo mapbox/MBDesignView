@@ -7,8 +7,12 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MBDInputViewController">
             <connections>
-                <outlet property="inputField" destination="uFF-YN-zo3" id="bSS-pe-MT0"/>
-                <outlet property="inputLabel" destination="s9S-U6-Ddb" id="BwD-ch-F0A"/>
+                <outlet property="colorInputField" destination="8cE-KA-i6A" id="t9M-UU-Dnv"/>
+                <outlet property="colorInputLabel" destination="X2o-ve-Ilz" id="IWS-UA-UwJ"/>
+                <outlet property="mapInputField" destination="uFF-YN-zo3" id="SXq-TE-dZM"/>
+                <outlet property="mapInputLabel" destination="s9S-U6-Ddb" id="Add-bc-cza"/>
+                <outlet property="titleInputField" destination="exc-oj-UxM" id="IML-rR-F0l"/>
+                <outlet property="titleInputLabel" destination="buH-35-0RA" id="Ped-1F-bGB"/>
                 <outlet property="view" destination="1" id="3"/>
             </connections>
         </placeholder>
@@ -21,7 +25,7 @@
                     <rect key="frame" x="20" y="49" width="280" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardAppearance="alert" returnKeyType="go" enablesReturnKeyAutomatically="YES"/>
+                    <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardAppearance="alert" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                     <connections>
                         <outlet property="delegate" destination="-1" id="FUk-Qg-gOG"/>
                     </connections>
@@ -33,10 +37,46 @@
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="buH-35-0RA">
+                    <rect key="frame" x="20" y="87" width="280" height="21"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="e.g. Foursquare" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="exc-oj-UxM">
+                    <rect key="frame" x="20" y="116" width="280" height="30"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardAppearance="alert" returnKeyType="done"/>
+                    <connections>
+                        <outlet property="delegate" destination="-1" id="WxE-zo-Msc"/>
+                    </connections>
+                </textField>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="e.g. ff0000" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="8cE-KA-i6A">
+                    <rect key="frame" x="20" y="183" width="280" height="30"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardAppearance="alert" returnKeyType="done"/>
+                    <connections>
+                        <outlet property="delegate" destination="-1" id="TqS-ln-RoF"/>
+                    </connections>
+                </textField>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Color" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X2o-ve-Ilz">
+                    <rect key="frame" x="20" y="154" width="280" height="21"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" red="0.17254902420000001" green="0.61960786580000005" blue="0.72156864399999998" alpha="1" colorSpace="deviceRGB"/>
             <constraints>
+                <constraint firstItem="buH-35-0RA" firstAttribute="top" secondItem="uFF-YN-zo3" secondAttribute="bottom" constant="8" symbolic="YES" id="5gn-8g-ygg"/>
+                <constraint firstItem="X2o-ve-Ilz" firstAttribute="top" secondItem="exc-oj-UxM" secondAttribute="bottom" constant="8" symbolic="YES" id="gDJ-mC-VKE"/>
                 <constraint firstItem="uFF-YN-zo3" firstAttribute="top" secondItem="s9S-U6-Ddb" secondAttribute="bottom" constant="8" symbolic="YES" id="hl1-we-9OH"/>
+                <constraint firstItem="8cE-KA-i6A" firstAttribute="top" secondItem="X2o-ve-Ilz" secondAttribute="bottom" constant="8" symbolic="YES" id="hmD-sI-QW4"/>
+                <constraint firstItem="exc-oj-UxM" firstAttribute="top" secondItem="buH-35-0RA" secondAttribute="bottom" constant="8" symbolic="YES" id="oXS-6T-QAC"/>
             </constraints>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
