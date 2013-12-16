@@ -10,6 +10,7 @@
 
 #import "MBDTM2TileSource.h"
 
+#import <MBProgressHUD/MBProgressHUD.h>
 #import <UIColor-HexString/UIColor+HexString.h>
 
 @interface MBDMapViewController ()
@@ -19,6 +20,8 @@
 @property (nonatomic) NSString *host;
 @property (nonatomic) NSDictionary *projectInfo;
 @property (nonatomic) NSString *projectPath;
+@property (nonatomic) MBProgressHUD *tipHUD;
+@property (nonatomic) UIBarButtonItem *reloadButton;
 
 @end
 
@@ -70,6 +73,10 @@
     self.mapView.hidden = YES;
 
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(reload:)];
+
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(toggleUI:)];
+    tap.numberOfTouchesRequired = 3;
+    [self.view addGestureRecognizer:tap];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -167,6 +174,20 @@
 
         [self.mapView setZoom:2 atCoordinate:CLLocationCoordinate2DMake(0, 0) animated:NO];
     }
+
+    if ( ! [[NSUserDefaults standardUserDefaults] boolForKey:@"showedGestureHint"])
+    {
+        self.tipHUD = [[MBProgressHUD alloc] initWithView:self.view];
+        self.tipHUD.mode = MBProgressHUDModeText;
+        self.tipHUD.labelText = @"Gestures";
+        self.tipHUD.detailsLabelText = @"Tap anywhere with three fingers to toggle the app user interface.";
+        [self.view addSubview:self.tipHUD];
+        [self.tipHUD show:YES];
+        [self.tipHUD hide:YES afterDelay:5.0];
+
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"showedGestureHint"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -187,6 +208,23 @@
     [self.mapView removeTileSourceAtIndex:0];
 
     self.mapView.tileSource = tileSource;
+}
+
+#pragma mark -
+
+- (void)toggleUI:(UITapGestureRecognizer *)tap
+{
+    if (self.navigationItem.hidesBackButton)
+    {
+        self.navigationItem.hidesBackButton = NO;
+        self.navigationItem.rightBarButtonItem = self.reloadButton;
+    }
+    else
+    {
+        self.navigationItem.hidesBackButton = YES;
+        self.reloadButton = self.navigationItem.rightBarButtonItem;
+        self.navigationItem.rightBarButtonItem = nil;
+    }
 }
 
 @end
