@@ -152,15 +152,19 @@
     }
     else if (self.projectPath)
     {
+        NSURL *projectInfoURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://%@:3000/style.json?id=tmstyle://%@", self.host, self.projectPath]];
+
+        NSDictionary *projectInfo = [NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfURL:projectInfoURL] options:0 error:nil];
+
         self.mapView.tileSource = [[MBDTM2TileSource alloc] initWithHost:self.host
                                                              projectPath:self.projectPath
                                                             tileCacheKey:[self.host stringByAppendingString:self.projectPath]
-                                                                 minZoom:0
-                                                                 maxZoom:19];
+                                                                 minZoom:[projectInfo[@"minzoom"] floatValue]
+                                                                 maxZoom:[projectInfo[@"maxzoom"] floatValue]];
 
         self.mapView.hideAttribution = YES;
 
-        self.title = ([[defaults stringForKey:@"lastTileMill2Title"] length] ? [defaults stringForKey:@"lastTileMill2Title"] : [self.projectPath lastPathComponent]);
+        self.title = ([[defaults stringForKey:@"lastTileMill2Title"] length] ? [defaults stringForKey:@"lastTileMill2Title"] : ([[projectInfo valueForKey:@"name"] length] ? [projectInfo valueForKey:@"name"] : [self.projectPath lastPathComponent]));
 
         if ([[defaults stringForKey:@"lastTileMill2Color"] length])
         {
@@ -172,7 +176,11 @@
                 self.mapView.tintColor = [UIColor colorWithHexString:hexString];
         }
 
-        [self.mapView setZoom:2 atCoordinate:CLLocationCoordinate2DMake(0, 0) animated:NO];
+        CLLocationCoordinate2D centerCoordinate = CLLocationCoordinate2DMake([projectInfo[@"center"][1] doubleValue], [projectInfo[@"center"][0] doubleValue]);
+
+        CGFloat zoom = [projectInfo[@"center"][2] doubleValue];
+
+        [self.mapView setZoom:zoom atCoordinate:centerCoordinate animated:NO];
     }
 
     if ( ! [[NSUserDefaults standardUserDefaults] boolForKey:@"showedGestureHint"])
