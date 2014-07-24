@@ -91,7 +91,7 @@
 
     if (self.mapID)
     {
-        RMMapBoxSource *tileSource = [[RMMapBoxSource alloc] initWithMapID:self.mapID];
+        RMMapboxSource *tileSource = [[RMMapboxSource alloc] initWithMapID:self.mapID];
 
         self.mapView.tileSource = tileSource;
 

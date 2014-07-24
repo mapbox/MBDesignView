@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-#import <MapBox/MapBox.h>
+#import <Mapbox-iOS-SDK/Mapbox.h>
 
 @interface MBDMapViewController : UIViewController
 
